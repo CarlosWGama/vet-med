@@ -1,0 +1,16 @@
+page-login {
+    ion-content {
+        background: linear-gradient(#A5C05B, #7BA4A8);
+    }
+
+    ion-list {
+        position: absolute;
+        top: 25%;
+        width: 90%;
+    }
+
+    ion-item {
+        background: rgba(0, 0, 0, 0.0) !important;
+        color: black !important;
+    }
+}

@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-navbar>
+    
+  	<button ion-button menuToggle>
+   		<ion-icon name="menu"></ion-icon>
+  	</button> 
+   
+    <ion-title>Cachorros</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <!-- LISTAR EXISTENTES -->
+  <ion-list>
+    <button ion-item *ngFor='let cachorro of cachorros' (click)="abrirCachorro(cachorro)">
+      {{cachorro.nome}} <small>({{cachorro.raca}})</small>
+      <p>{{cachorro.idade}} anos [{{cachorro.nascimento}}]</p>
+    </button>
+  </ion-list>
+
+  <!-- Cadastrar novos cachorros -->
+  <ion-fab right bottom>
+    <button ion-fab (click)="novoCachorro()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
+
+</ion-content>
