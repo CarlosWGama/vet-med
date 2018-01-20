@@ -1,12 +1,25 @@
 page-login {
+
+    #logo {
+        position: absolute;
+        left:5%;
+        max-width: 60%;
+        max-height: 25%;
+        margin-left: 20%;
+    }
+
     ion-content {
         background: linear-gradient(#A5C05B, #7BA4A8);
     }
 
     ion-list {
         position: absolute;
-        top: 25%;
+        top: 30%;
         width: 90%;
+    }
+
+    ion-label {
+        color: #232122 !important;
     }
 
     ion-item {

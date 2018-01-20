@@ -1,0 +1,70 @@
+<ion-header>
+
+  	<ion-navbar>
+    	<ion-title>
+			<div class="page-title">Nova Consulta</div>
+			<div class="page-sub-title">{{cachorro.nome}}</div>
+      	</ion-title>
+  	</ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+		<ion-list>
+			<!-- Veterinário -->
+			<ion-item>
+				<ion-label stacked>Veterinário:</ion-label>
+				<ion-select>
+					<ion-option value="nes">Simona (X)</ion-option>
+					<ion-option value="n64">Paula (Animal Amigo)</ion-option>
+					<ion-option value="ps">Monique (É o Bicho)</ion-option>
+				</ion-select>
+			</ion-item>
+			
+			<!-- CAUSA -->
+			<ion-item>
+				<ion-label stacked>Causa</ion-label>
+				<ion-input type="text"></ion-input>
+			</ion-item>
+
+			<!-- DATA -->
+			<ion-item>
+				<ion-label stacked>Data da Consulta</ion-label>
+				<ion-input type="date"></ion-input>
+			</ion-item>
+
+			<!-- RETORNO -->
+			<ion-item>
+				<ion-label stacked>Retorno <small>(opcional)</small></ion-label>
+				<ion-input type="date"></ion-input>
+			</ion-item>
+
+			<!-- RETORNO -->
+			<ion-item>
+				<ion-label stacked>Preço <small>(opcional)</small></ion-label>
+				<ion-input type="number"></ion-input>
+			</ion-item>
+
+			<ion-list-header>Remédios</ion-list-header>
+			
+			<!-- REMEDIOS -->
+			<ion-item-sliding *ngFor="let remedio of remedios">
+				<ion-item>
+					<p>{{remedio.remedio}} ({{remedio.dosagem}})</p>
+				</ion-item>
+				<ion-item-options side="right">
+					<button ion-button color="danger" (click)="excluir(remedio)">
+						<ion-icon name="trash"></ion-icon>Excluir
+					</button>
+				</ion-item-options>
+			</ion-item-sliding>
+
+			<!-- ADICIONAR -->
+			<button ion-button color="secondary" block (click)="novoRemedio()">Adicionar Remédio</button>
+			
+		</ion-list>
+
+	<button></button>
+</ion-content>

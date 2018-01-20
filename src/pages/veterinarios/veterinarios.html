@@ -14,12 +14,26 @@
 
 
 <ion-content>
-    <ion-list>
-      	<ion-list-header>
-      		Consultas
-    	</ion-list-header>
-    	<button ion-item>
-      		Itemdetails
-		</button>
-  </ion-list>
+	
+	<ion-list>
+		<!-- VETERINÁRIOS -->
+		<ion-item-sliding *ngFor="let veterinario of veterinarios">
+			<!-- DESCRIÇÃO -->
+			<button ion-item> {{veterinario.nome}} ({{veterinario.clinica}}) </button>
+			<!-- AÇÕES -->
+			<ion-item-options side="right">
+				<button ion-button color="danger" (click)="excluirVeterinario(veterinario)">
+					<ion-icon name="trash"></ion-icon>Excluir
+				</button>
+				<button ion-button color="secondary" (click)="editarVeterinario(veterinario)">
+					<ion-icon name="create"></ion-icon>Editar
+				</button>
+			</ion-item-options>
+		</ion-item-sliding>
+  	</ion-list>
+
+	<!-- NOVO -->
+  	<ion-fab bottom right color="primary">
+		<button ion-fab (click)="novoVeterinario()"><ion-icon name="add"></ion-icon></button>
+	</ion-fab>
 </ion-content>

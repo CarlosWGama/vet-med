@@ -8,12 +8,73 @@
 
 
 <ion-content>
-  <ion-list>
-      <ion-list-header>
-        Consultas
-    </ion-list-header>
-    <ion-item>
-        Itemdetails
-    </ion-item>
+  <ion-list >
+	  	<!-- ANO -->
+      	<ion-list-header>2018 </ion-list-header>
+
+		<!-- ITENS DO ANO -->
+		<ion-item-sliding>
+			<button ion-item color="secondary" (click)="abrirConsulta()">
+				<h2>Veterinário X</h2>
+				<p>19/01/2018</p>
+			</button>
+			<ion-item-options side="right">
+				<button ion-button color="danger">
+					<ion-icon name="trash"></ion-icon>Excluir
+				</button>
+				<button ion-button color="secondary">
+					<ion-icon name="create"></ion-icon>Editar
+				</button>
+			</ion-item-options>
+		</ion-item-sliding>
+
+		<ion-item-sliding>
+			<button ion-item>
+				<h2>Veterinário X</h2>
+				<p>19/01/2018</p>
+			</button>
+			<ion-item-options side="right">
+				<button ion-button color="danger">
+					<ion-icon name="trash"></ion-icon>Excluir
+				</button>
+				<button ion-button color="secondary">
+					<ion-icon name="create"></ion-icon>Editar
+				</button>
+			</ion-item-options>
+		</ion-item-sliding>
+
+	  	<!-- ANO -->
+      	<ion-list-header>2017 </ion-list-header>
+
+		<!-- ITENS DO ANO -->
+		<ion-item-sliding>
+			<button ion-item>Veterinário X</button>
+			<ion-item-options side="right">
+				<button ion-button color="danger">
+					<ion-icon name="trash"></ion-icon>Excluir
+				</button>
+				<button ion-button color="secondary">
+					<ion-icon name="create"></ion-icon>Editar
+				</button>
+			</ion-item-options>
+		</ion-item-sliding>
+
+		<ion-item-sliding>
+			<button ion-item>Veterinário X</button>
+			<ion-item-options side="right">
+				<button ion-button color="danger">
+					<ion-icon name="trash"></ion-icon>Excluir
+				</button>
+				<button ion-button color="secondary">
+					<ion-icon name="create"></ion-icon>Editar
+				</button>
+			</ion-item-options>
+		</ion-item-sliding>
+
   </ion-list>
+
+
+  <ion-fab bottom right color="primary">
+    <button ion-fab (click)="novaConsulta()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
 </ion-content>
