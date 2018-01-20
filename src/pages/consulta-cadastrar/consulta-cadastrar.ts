@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular/components/alert/alert-controller';
 import { Remedio } from '../../models/Remedio';
-import { DataBrasilPipe } from '../../pipes/data-brasil/data-brasil';
 
 @IonicPage()
 @Component({
@@ -31,12 +30,13 @@ export class ConsultaCadastrarPage {
         { name: "remedio", placeholder: "Remédio", type: "text" },
         { name: "dosagem", placeholder: "Dosagem (quantidade)", type:"text"},
         { name: "duracao", placeholder: "Duração (dias)", type: "number"},
+        { name: "frequencia", placeholder: "Frequência (horas)", type: "number"},
         { name: "inicio", placeholder: "Início", type: "date"}
       ],
       buttons: [
         {text: "Cancelar", role: "cancel"},
         {text: "Salvar", handler: (data) => {
-          let remedio = new Remedio(data.remedio, data.dosagem, data.duracao, data.inicio);
+          let remedio = new Remedio(data.remedio, data.dosagem, data.frequencia, data.duracao, data.inicio);
           this.remedios.push(remedio);
 
         }}
@@ -48,6 +48,10 @@ export class ConsultaCadastrarPage {
   excluir(remedio: Remedio): void {
     let index = this.remedios.indexOf(remedio);
     this.remedios.splice(index, 1);
+  }
+
+  salvar(): void {
+    this.navCtrl.pop();
   }
 
 }

@@ -2,7 +2,7 @@
 
 export class Remedio {
 
-    constructor(public remedio: string, public dosagem:string, public duracao?:number, 
+    constructor(public remedio: string, public dosagem:string, public frequencia: number, public duracao?:number, 
         public inicio?: string, public fim?: string) {
         this.formateFim();
     }

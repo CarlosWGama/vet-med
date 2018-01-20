@@ -1,10 +1,17 @@
 <ion-header>
 
   	<ion-navbar>
+
     	<ion-title>
 			<div class="page-title">Nova Consulta</div>
 			<div class="page-sub-title">{{cachorro.nome}}</div>
-      	</ion-title>
+		  </ion-title>
+		  
+		<ion-buttons end>
+			<button ion-button (click)="salvar()">
+					<ion-icon name="add-circle"></ion-icon>
+			</button>
+		</ion-buttons>
   	</ion-navbar>
 
 </ion-header>
@@ -52,7 +59,7 @@
 			<!-- REMEDIOS -->
 			<ion-item-sliding *ngFor="let remedio of remedios">
 				<ion-item>
-					<p>{{remedio.remedio}} ({{remedio.dosagem}})</p>
+					<p>{{remedio.remedio}} ({{remedio.dosagem }}<span *ngIf="remedio.frequencia != ''"> a cada {{remedio.frequencia}}h</span><span *ngIf="remedio.duracao != ''"> por {{remedio.duracao}} dias</span>)</p>
 				</ion-item>
 				<ion-item-options side="right">
 					<button ion-button color="danger" (click)="excluir(remedio)">
