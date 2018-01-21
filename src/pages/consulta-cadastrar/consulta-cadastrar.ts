@@ -10,7 +10,7 @@ import { Remedio } from '../../models/Remedio';
 })
 export class ConsultaCadastrarPage {
 
-  private cachorro: any = null;
+  private animal: any = null;
 
   private remedios: Remedio[] = [];
 
@@ -18,7 +18,7 @@ export class ConsultaCadastrarPage {
   }
 
   ionViewWillLoad() {
-    this.cachorro = this.navParams.get("cachorro");
+    this.animal = this.navParams.get("animal");
   }
 
 

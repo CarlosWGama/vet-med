@@ -1,33 +1,33 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular/components/alert/alert-controller';
-import { CachorroPage } from '../cachorro/cachorro';
+import { AnimalPage } from '../animal/animal';
 import { ToastController } from 'ionic-angular/components/toast/toast-controller';
-import { CachorroProvider } from '../../providers/cachorro/cachorro';
+import { AnimalProvider } from '../../providers/animal/animal';
 import { DataBrasilPipe } from '../../pipes/data-brasil/data-brasil';
 
 @IonicPage()
 @Component({
-  selector: 'page-cachorros',
-  templateUrl: 'cachorros.html',
+  selector: 'page-animais',
+  templateUrl: 'animais.html',
 })
-export class CachorrosPage {
+export class AnimaisPage {
 
-	private cachorros: any[] = [];
+	private animais: any[] = [];
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, private toastCtrl: ToastController, private cachorroProvider: CachorroProvider) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, private toastCtrl: ToastController, private animalProvider: AnimalProvider) {
    
 	}
 
 	ionViewDidLoad() {
-		this.cachorroProvider.buscar().then((cachorros) => {
-			this.cachorros = cachorros;
+		this.animalProvider.buscar().then((animais) => {
+			this.animais = animais;
 		});
 	}
 
 	/** Abre tela com dados do animal */
-	abrir(cachorroAbrir: any): void {
-		this.navCtrl.push(CachorroPage, {cachorro: cachorroAbrir});
+	abrir(animalAbrir: any): void {
+		this.navCtrl.push(AnimalPage, {animal: animalAbrir});
 	}
 
 	/** 
@@ -64,8 +64,8 @@ export class CachorrosPage {
 						let campos  = {"nome": data.nome, "raca": data.raca, "nascimento": data.nascimento};
 						
 						if (!this.validar(campos)) {
-							this.cachorroProvider.cadastrar(campos).then((cachorros) => {
-								this.cachorros = cachorros;
+							this.animalProvider.cadastrar(campos).then((animais) => {
+								this.animais = animais;
 								this.toastCtrl.create({
 									message: 'Cadastrado',
 									duration: 3000,
@@ -119,8 +119,8 @@ export class CachorrosPage {
 						let campos  = {id: animal.id, nome: data.nome, raca: data.raca, nascimento: data.nascimento};
 						
 						if (!this.validar(campos)) {
-							this.cachorroProvider.atualizar(campos).then((animais) => {
-								this.cachorros = animais;
+							this.animalProvider.atualizar(campos).then((animais) => {
+								this.animais = animais;
 								this.toastCtrl.create({
 									message: 'Atualizado',
 									duration: 3000,
@@ -137,11 +137,11 @@ export class CachorrosPage {
 
 
 	/**
-	 *  Exclui um  cachorro 
+	 *  Exclui um  animal 
 	 */
 	excluir(id: number): void {
-		this.cachorroProvider.deletar(id).then((cachorros) => {
-			this.cachorros = cachorros;
+		this.animalProvider.deletar(id).then((animais) => {
+			this.animais = animais;
 		});
 	}
 

@@ -4,7 +4,7 @@ import { Servidor } from '../Servidor';
 import { Storage } from '@ionic/storage/dist/storage';
 
 @Injectable()
-export class CachorroProvider extends Servidor {
+export class AnimalProvider extends Servidor {
 
   constructor(public http: HttpClient, storage: Storage) {
     super();
@@ -13,11 +13,11 @@ export class CachorroProvider extends Servidor {
 
   /**
    * Cadastra novos animais e retorna a lista atualizada
-   * @param cachorro 
+   * @param animal 
    */
-  public cadastrar(cachorro: {"nome":string, "raca":string, "nascimento":string}): Promise<any> {
+  public cadastrar(animal: {"nome":string, "raca":string, "nascimento":string}): Promise<any> {
     return this.getHeaders().then((headers:any) => {  
-      return this.http.post(this.link+"cachorros", cachorro, {headers: headers}).toPromise();
+      return this.http.post(this.link+"animals", animal, {headers: headers}).toPromise();
     });
   }
 
@@ -26,17 +26,17 @@ export class CachorroProvider extends Servidor {
    */
   public buscar(): Promise<any> {
     return this.getHeaders().then((headers: any) => {
-      return this.http.get(this.link+'cachorros', {headers: headers}).toPromise();
+      return this.http.get(this.link+'animals', {headers: headers}).toPromise();
     });
   }
 
   /**
    * Atualiza animal e retorna a lista atualizada
-   * @param cachorro
+   * @param animal
    */
-  public atualizar(cachorro: {id: number, nome:string, raca:string, nascimento:string}): Promise<any> {
+  public atualizar(animal: {id: number, nome:string, raca:string, nascimento:string}): Promise<any> {
     return this.getHeaders().then((headers:any) => {  
-      return this.http.put(this.link+"cachorros/"+cachorro.id, cachorro, {headers: headers}).toPromise();
+      return this.http.put(this.link+"animals/"+animal.id, animal, {headers: headers}).toPromise();
     });
   }
 
@@ -46,7 +46,7 @@ export class CachorroProvider extends Servidor {
    */
   public deletar(id: number): Promise<any> {
     return this.getHeaders().then((headers:any) => {  
-      return this.http.delete(this.link+"cachorros/"+id, {headers: headers}).toPromise();
+      return this.http.delete(this.link+"animals/"+id, {headers: headers}).toPromise();
     });
   }
 

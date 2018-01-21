@@ -6,17 +6,17 @@ import { ConsultaCadastrarPage } from '../consulta-cadastrar/consulta-cadastrar'
 
 @IonicPage()
 @Component({
-  selector: 'page-cachorro',
-  templateUrl: 'cachorro.html',
+  selector: 'page-animal',
+  templateUrl: 'animal.html',
 })
-export class CachorroPage {
+export class AnimalPage {
 
-  private cachorro = null;
+  private animal = null;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private modalCtrl: ModalController) {}
 
   ionViewWillLoad() {
-    this.cachorro = this.navParams.get("cachorro");
+    this.animal = this.navParams.get("animal");
   }
 
   abrirConsulta(): void {
@@ -25,7 +25,7 @@ export class CachorroPage {
   }
 
   novaConsulta(): void {
-    this.navCtrl.push(ConsultaCadastrarPage, {cachorro: this.cachorro});
+    this.navCtrl.push(ConsultaCadastrarPage, {animal: this.animal});
   }
 
 }

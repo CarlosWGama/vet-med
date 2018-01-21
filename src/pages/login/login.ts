@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
-import { CachorrosPage } from '../cachorros/cachorros';
+import { AnimaisPage } from '../animais/animais';
 import { MenuController } from 'ionic-angular/components/app/menu-controller';
 import { UsuarioProvider } from '../../providers/usuario/usuario';
 import { ToastController } from 'ionic-angular/components/toast/toast-controller';
@@ -29,12 +29,10 @@ export class LoginPage {
   logar():void {
     this.usuarioProvider.login(this.email, this.senha).then((data)=> {
       this.usuarioProvider.setJWT(data);
-      this.navCtrl.setRoot(CachorrosPage);
+      this.navCtrl.setRoot(AnimaisPage);
     }).catch(falha => {
       if(falha.status == 404)
         this.toastCtrl.create({message: "Falha ao logar", duration:3000}).present();
     });
-
-    //this.navCtrl.setRoot(CachorrosPage);
   }
 }

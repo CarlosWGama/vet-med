@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { CachorrosPage } from './cachorros';
-import { CachorroPageModule } from '../cachorro/cachorro.module';
+import { AnimaisPage } from './animais';
+import { AnimalPageModule } from '../animal/animal.module';
 import { DataBrasilPipe } from '../../pipes/data-brasil/data-brasil';
 
 @NgModule({
   declarations: [
-    CachorrosPage,
+    AnimaisPage,
     DataBrasilPipe
   ],
   imports: [
-    IonicPageModule.forChild(CachorrosPage),
-    CachorroPageModule
+    IonicPageModule.forChild(AnimaisPage),
+    AnimalPageModule
   ],
   
 })
-export class CachorrosPageModule {}
+export class AnimaisPageModule {}

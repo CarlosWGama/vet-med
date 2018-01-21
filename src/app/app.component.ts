@@ -4,7 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 //Páginas
-import { CachorrosPage } from '../pages/cachorros/cachorros';
+import { AnimaisPage } from '../pages/animais/animais';
 import { VeterinariosPage } from '../pages/veterinarios/veterinarios';
 import { LoginPage } from '../pages/login/login';
 import { UsuarioProvider } from '../providers/usuario/usuario';
@@ -26,12 +26,12 @@ export class MyApp {
      this.usuarioProvider.getJWT().then((data) => {
       //Já está logado
       if (data != null)
-        this.rootPage = CachorrosPage;
+        this.rootPage = AnimaisPage;
      });
     
     //Páginas do menu
     this.pages = [
-      { title: 'Cachorros', component: CachorrosPage },
+      { title: 'Animais', component: AnimaisPage },
       { title: 'Veterinários', component: VeterinariosPage }
     ];
   }
