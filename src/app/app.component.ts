@@ -7,6 +7,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { CachorrosPage } from '../pages/cachorros/cachorros';
 import { VeterinariosPage } from '../pages/veterinarios/veterinarios';
 import { LoginPage } from '../pages/login/login';
+import { UsuarioProvider } from '../providers/usuario/usuario';
 
 @Component({
   templateUrl: 'app.html'
@@ -18,22 +19,28 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public usuarioProvider: UsuarioProvider) {
     this.initializeApp();
 
+     //Redirecionada para a página correta
+     this.usuarioProvider.getJWT().then((data) => {
+      //Já está logado
+      if (data != null)
+        this.rootPage = CachorrosPage;
+     });
+    
     //Páginas do menu
     this.pages = [
       { title: 'Cachorros', component: CachorrosPage },
       { title: 'Veterinários', component: VeterinariosPage }
     ];
-
   }
-
   
   initializeApp() {
+    
     this.platform.ready().then(() => {
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
+        this.statusBar.styleDefault();
+        this.splashScreen.hide();  
     });
   }
 
@@ -44,5 +51,6 @@ export class MyApp {
 
   logout():void {
     this.nav.setRoot(LoginPage);
+    this.usuarioProvider.logout();
   }
 }

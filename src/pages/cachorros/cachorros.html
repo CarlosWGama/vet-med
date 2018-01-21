@@ -15,15 +15,29 @@
 
   <!-- LISTAR EXISTENTES -->
   <ion-list>
-    <button ion-item *ngFor='let cachorro of cachorros' (click)="abrirCachorro(cachorro)">
-      {{cachorro.nome}} <small>({{cachorro.raca}})</small>
-      <p>{{cachorro.idade}} anos [{{cachorro.nascimento}}]</p>
-    </button>
+    <!-- CACHORROS -->
+    <ion-item-sliding *ngFor='let cachorro of cachorros'>
+      	<!-- CACHORRO -->
+      	<button ion-item  (click)="abrir(cachorro)">
+        	{{cachorro.nome}} <small>({{cachorro.raca}})</small>
+        	<p>{{cachorro.idade}} anos [{{cachorro.nascimento | dataBrasil }}]</p>
+      	</button>
+      	<!-- AÇÕES -->
+		<ion-item-options side="right">
+          	<button ion-button color="danger" (click)="excluir(cachorro.id)">
+            	<ion-icon name="trash"></ion-icon>Excluir
+          	</button>
+          	<button ion-button color="secondary" (click)="editar(cachorro)">
+            	<ion-icon name="create"></ion-icon>Editar
+          	</button>
+        </ion-item-options>
+    
+    </ion-item-sliding>
   </ion-list>
 
   <!-- Cadastrar novos cachorros -->
   <ion-fab right bottom>
-    <button ion-fab (click)="novoCachorro()">
+    <button ion-fab (click)="novo()">
       <ion-icon name="add"></ion-icon>
     </button>
   </ion-fab>
