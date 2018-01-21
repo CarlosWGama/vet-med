@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular/components/alert/alert-controller';
 import { Remedio } from '../../models/Remedio';
+import { VeterinarioProvider } from '../../providers/veterinario/veterinario';
 
 @IonicPage()
 @Component({
@@ -13,12 +14,14 @@ export class ConsultaCadastrarPage {
   private animal: any = null;
 
   private remedios: Remedio[] = [];
+  private veterinarios: any[] = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController, private vetProvider: VeterinarioProvider) {
   }
 
   ionViewWillLoad() {
     this.animal = this.navParams.get("animal");
+    this.vetProvider.buscar().then(veterinarios => this.veterinarios = veterinarios);
   }
 
 

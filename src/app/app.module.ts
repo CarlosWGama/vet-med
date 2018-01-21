@@ -16,6 +16,7 @@ import { AnimaisPageModule } from '../pages/animais/animais.module';
 import { VeterinariosPageModule } from '../pages/veterinarios/veterinarios.module';
 import { LoginPageModule } from '../pages/login/login.module';
 import { UsuarioProvider } from '../providers/usuario/usuario';
+import { VeterinarioProvider } from '../providers/veterinario/veterinario';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { UsuarioProvider } from '../providers/usuario/usuario';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AnimalProvider,
-    UsuarioProvider
+    UsuarioProvider,
+    VeterinarioProvider
   ]
 })
 export class AppModule {}

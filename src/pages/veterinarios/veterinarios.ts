@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular/components/alert/alert-controller';
+import { VeterinarioProvider } from '../../providers/veterinario/veterinario';
+import { ToastController } from 'ionic-angular/components/toast/toast-controller';
 
 @IonicPage()
 @Component({
@@ -11,20 +13,18 @@ export class VeterinariosPage {
 
   private veterinarios: any[] = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, private vetProvider: VeterinarioProvider, private toastCtrl: ToastController) {
   }
 
   ionViewWillEnter() {
-    this.veterinarios = [
-      {nome: "Paula", clinica: "Animal Amigo", telefone: "YYYY"},
-      {nome: "Paulo", clinica: "animal.com", telefone: "YYYY"},
-      {nome: "Simona", clinica: "X", telefone: "YYYY"},
-      {nome: "Monique", clinica: "É o bicho", telefone: "YYYY"},
-    ];
+    this.vetProvider.buscar().then((veterinarios) => {
+      this.veterinarios = veterinarios;
+    });
   }
 
   /** CRUD VETERINARIO **/
-  novoVeterinario(): void {
+  /** Cadastrar um novo veterinário */
+  novo(): void {
     this.alertCtrl.create({
       title: "Novo Veterinário",
       inputs: [
@@ -35,15 +35,29 @@ export class VeterinariosPage {
       buttons: [
         { text: "Cancelar", role: "cancel" },
         { text: "Cadastrar", handler: (data) => {
-          let veterinario = { nome: data.nome, clinica: data.clinica, telefone: data.telefone };
-          this.veterinarios.push(veterinario);
-        }}
+				let veterinario = { nome: data.nome, clinica: data.clinica, telefone: data.telefone };
+				
+				//Valida
+				if (!this.validar(veterinario)) {
+				
+					//Cadastrar
+					this.vetProvider.cadastrar(veterinario).then((veterinarios) => {
+						this.veterinarios = veterinarios;
+					
+						this.toastCtrl.create({
+							message: "Cadastrado com sucesso",
+							duration: 3000
+						}).present();
+					});
+					
+				}
+			}
+		}
       ]
     }).present();
   }
 
-  editarVeterinario(veterinario: any): void {
-    let index = this.veterinarios.indexOf(veterinario);
+  editar(veterinario: any): void {
     this.alertCtrl.create({
       title: "Novo Veterinário",
       inputs: [
@@ -54,16 +68,58 @@ export class VeterinariosPage {
       buttons: [
         { text: "Cancelar", role: "cancel" },
         { text: "Cadastrar", handler: (data) => {
-          veterinario = { nome: data.nome, clinica: data.clinica, telefone: data.telefone };
-          this.veterinarios[index] = veterinario;
-        }}
+          		veterinario = {id: veterinario.id, nome: data.nome, clinica: data.clinica, telefone: data.telefone };
+				//Valida
+				if (!this.validar(veterinario)) {
+				
+					//Atualiza
+					this.vetProvider.editar(veterinario).then((veterinarios) => {
+						this.veterinarios = veterinarios;
+					
+						this.toastCtrl.create({
+							message: "Atualizado com sucesso",
+							duration: 3000
+						}).present();
+					});
+				}
+			}
+		}
       ]
     }).present();
   }
 
-  excluirVeterinario(veterinario: any): void {
-    let index = this.veterinarios.indexOf(veterinario);
-    this.veterinarios.splice(index, 1);
+  excluir(id: number): void {
+    //Exclui
+	this.vetProvider.deletar(id).then((veterinarios) => {
+		this.veterinarios = veterinarios;
+	
+		this.toastCtrl.create({
+			message: "Excluido com sucesso",
+			duration: 3000
+		}).present();
+	});
   }
+
+
+
+	/**
+	 * Valida os campos do veterinário
+	 * @param vet 
+	 * @return boolean
+	 */
+	private validar(vet: {nome:string, clinica:string, telefone:string}): boolean {
+		let error = this.alertCtrl.create({
+			title: "Falha ao cadastrar",
+			buttons: ["Ok"]
+		});
+
+		if (vet.nome == "")
+			error.setMessage("Preencha o nome").present();
+		else if (vet.clinica == "")
+			error.setMessage("Preencha a clinica a qual o veterinário pertence").present();
+		else
+			return false; //Não deu erro
+		return true; //Deu erro
+	}
 
 }
