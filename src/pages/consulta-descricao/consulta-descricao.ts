@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Consulta } from '../../models/Consulta';
 
 @IonicPage()
 @Component({
@@ -8,11 +9,14 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ConsultaDescricaoPage {
 
+  private consulta: any;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ConsultaDescricaoPage');
+  ionViewWillLoad() {
+    this.consulta = this.navParams.get("consulta");
+    console.log(this.consulta);
   }
 
 }

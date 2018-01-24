@@ -2,16 +2,16 @@ import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { AnimaisPage } from './animais';
 import { AnimalPageModule } from '../animal/animal.module';
-import { DataBrasilPipe } from '../../pipes/data-brasil/data-brasil';
+import { PipesModule } from '../../pipes/pipes.module';
 
 @NgModule({
   declarations: [
-    AnimaisPage,
-    DataBrasilPipe
+    AnimaisPage
   ],
   imports: [
     IonicPageModule.forChild(AnimaisPage),
-    AnimalPageModule
+    AnimalPageModule,
+    PipesModule
   ],
   
 })

@@ -4,7 +4,7 @@
 
     	<ion-title>
 			<div class="page-title">Nova Consulta</div>
-			<div class="page-sub-title">{{animal.nome}}</div>
+			<div class="page-sub-title">{{consulta.animal.nome}}</div>
 		  </ion-title>
 		  
 		<ion-buttons end>
@@ -23,39 +23,41 @@
 			<!-- Veterinário -->
 			<ion-item>
 				<ion-label stacked>Veterinário:</ion-label>
-				<ion-select>
-					<ion-option *ngFor="let vet of veterinarios" value="{{vet.id}}">{{vet.nome}} ({{vet.clinica}})</ion-option>
+				<ion-select [(ngModel)]="consulta.veterinario">
+					<ion-option *ngFor="let vet of veterinarios" [value]="vet">
+						{{vet.nome}} ({{vet.clinica}})
+					</ion-option>
 				</ion-select>
 			</ion-item>
 			
 			<!-- CAUSA -->
 			<ion-item>
 				<ion-label stacked>Causa</ion-label>
-				<ion-input type="text"></ion-input>
+				<ion-input type="text" [(ngModel)]="consulta.causa"></ion-input>
 			</ion-item>
 
 			<!-- DATA -->
 			<ion-item>
 				<ion-label stacked>Data da Consulta</ion-label>
-				<ion-input type="date"></ion-input>
+				<ion-input type="date" [(ngModel)]="consulta.data_consulta"></ion-input>
 			</ion-item>
 
 			<!-- RETORNO -->
 			<ion-item>
 				<ion-label stacked>Retorno <small>(opcional)</small></ion-label>
-				<ion-input type="date"></ion-input>
+				<ion-input type="date" [(ngModel)]="consulta.data_retorno"></ion-input>
 			</ion-item>
 
 			<!-- RETORNO -->
 			<ion-item>
 				<ion-label stacked>Preço <small>(opcional)</small></ion-label>
-				<ion-input type="number"></ion-input>
+				<ion-input type="number" [(ngModel)]="consulta.preco"></ion-input>
 			</ion-item>
 
 			<ion-list-header>Remédios</ion-list-header>
 			
 			<!-- REMEDIOS -->
-			<ion-item-sliding *ngFor="let remedio of remedios">
+			<ion-item-sliding *ngFor="let remedio of consulta.remedios">
 				<ion-item>
 					<p>{{remedio.remedio}} ({{remedio.dosagem }}<span *ngIf="remedio.frequencia != ''"> a cada {{remedio.frequencia}}h</span><span *ngIf="remedio.duracao != ''"> por {{remedio.duracao}} dias</span>)</p>
 				</ion-item>

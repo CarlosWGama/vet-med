@@ -17,6 +17,7 @@ import { VeterinariosPageModule } from '../pages/veterinarios/veterinarios.modul
 import { LoginPageModule } from '../pages/login/login.module';
 import { UsuarioProvider } from '../providers/usuario/usuario';
 import { VeterinarioProvider } from '../providers/veterinario/veterinario';
+import { ConsultaProvider } from '../providers/consulta/consulta';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { VeterinarioProvider } from '../providers/veterinario/veterinario';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AnimalProvider,
     UsuarioProvider,
-    VeterinarioProvider
+    VeterinarioProvider,
+    ConsultaProvider
   ]
 })
 export class AppModule {}

@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ModalController } from 'ionic-angular/components/modal/modal-controller';
 import { ConsultaDescricaoPage } from '../consulta-descricao/consulta-descricao';
 import { ConsultaCadastrarPage } from '../consulta-cadastrar/consulta-cadastrar';
+import { Consulta } from '../../models/Consulta';
+import { ConsultaProvider } from '../../providers/consulta/consulta';
 
 @IonicPage()
 @Component({
@@ -12,19 +14,27 @@ import { ConsultaCadastrarPage } from '../consulta-cadastrar/consulta-cadastrar'
 export class AnimalPage {
 
   private animal = null;
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, private modalCtrl: ModalController) {}
+  private consultas: Consulta[] = [];
+  constructor(public navCtrl: NavController, public navParams: NavParams, private modalCtrl: ModalController, private consultaProvider: ConsultaProvider) {}
 
   ionViewWillLoad() {
     this.animal = this.navParams.get("animal");
   }
 
-  abrirConsulta(): void {
-    let modal = this.modalCtrl.create(ConsultaDescricaoPage);
+  ionViewWillEnter() {
+    this.consultaProvider.buscar(this.animal.id).then(consultas => this.consultas = consultas);
+  }
+
+  abrir(consulta: Consulta): void {
+    let modal = this.modalCtrl.create(ConsultaDescricaoPage, {consulta: consulta});
     modal.present();
   }
 
-  novaConsulta(): void {
+  excluir(consulta: Consulta) {
+    this.consultaProvider.deletar(consulta.id).then(consultas => this.consultas = consultas); 
+  }
+
+  nova(): void {
     this.navCtrl.push(ConsultaCadastrarPage, {animal: this.animal});
   }
 
