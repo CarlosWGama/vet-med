@@ -1,8 +1,8 @@
 {
   "name": "vet-med",
-  "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
+  "version": "1.0.0",
+  "author": "Carlos W. Gama",
+  "homepage": "http://carloswgama.com.br/",
   "private": true,
   "scripts": {
     "clean": "ionic-app-scripts clean",
