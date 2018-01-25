@@ -9,7 +9,7 @@ import { Consulta } from '../../models/Consulta';
 })
 export class ConsultaDescricaoPage {
 
-  private consulta: any;
+  private consulta: Consulta;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
