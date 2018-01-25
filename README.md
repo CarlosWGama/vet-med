@@ -3,7 +3,7 @@
 Aplicativo para registrar todas as consultas veterinárias realizadas com seus animais. 
 
 -----
-## Versão 1.0.1
+## Versão 1.0.2
 
 O aplicativo disponibiliza:
 
@@ -23,6 +23,12 @@ O aplicativo disponibiliza:
   * Data da Consulta
   * Data do Retorno se tiver
   * Remédios prescitos (dosagem, frequência, duração...)
+
+### Ajustes
+
+* Apenas o remédio ativa fica selecionado
+* Melhoria no layout de listagem de consultas
+* Exibir também a causa da consutla na listagem
 
 ## Downloads:
 

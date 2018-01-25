@@ -38,7 +38,7 @@
 
     <!-- REMEDIOS -->
     <ion-list-header><h2>Remédios</h2></ion-list-header>
-    <ion-item *ngFor="let remedio of consulta.remedios" [color]="consulta.ativa ? 'secondary' : ''"> 
+    <ion-item *ngFor="let remedio of consulta.remedios" [color]="remedio.ativa ? 'secondary' : ''"> 
       <h2>{{ remedio.remedio }}</h2>
       <p>Quantidade: {{ remedio.dosagem }}</p>
       <p *ngIf="remedio.frequencia != null">Frequência: {{ remedio.frequencia }}h</p>
