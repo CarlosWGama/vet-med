@@ -2,7 +2,7 @@ import { Storage } from '@ionic/storage';
 
 export class Servidor {
 
-    protected link = 'http://localhost:8000/api/';
+    protected link = 'http://vet.carloswgama.com.br/api/';
     protected storage: Storage;
 
     public getHeaders(): Promise<{"Authorization": string}> {
