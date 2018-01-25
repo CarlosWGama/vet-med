@@ -11,8 +11,30 @@ export class UsuarioProvider extends Servidor {
     this.storage = storage;
   }
 
-  public login(usuarioEmail:string, usaurioSenha:string): Promise<any> {
-    return this.http.post(this.link+'login', {email:usuarioEmail, senha:usaurioSenha}).toPromise();
+  /**
+   * Loga um usuário existente
+   * @param email 
+   * @param senha 
+   */
+  public login(email:string, senha:string): Promise<any> {
+    return this.http.post(
+				this.link+'login', 
+				{email:email, senha:senha},
+				{headers: {"Content-Type": "application/json"}}
+		).toPromise();
+  }
+
+  /**
+   * Permite cadastrar um novo usuário
+   * @param email 
+   * @param senha 
+   */
+  public cadastrar(email:string, senha:string): Promise<any> {
+    return this.http.post(
+				this.link+'usuario', 
+				{email:email, senha:senha},
+				{headers: {"Content-Type": "application/json"}}
+		).toPromise();
   }
 
   public setJWT(token: string): void {
