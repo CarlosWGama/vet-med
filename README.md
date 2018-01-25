@@ -1,11 +1,9 @@
 # VetMed
 
-@aasd - asdasd
-
 Aplicativo para registrar todas as consultas veterinárias realizadas com seus animais. 
 
 -----
-## Versão 1.0.0
+## Versão 1.0.1
 
 O aplicativo disponibiliza:
 
