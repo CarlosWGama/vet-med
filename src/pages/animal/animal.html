@@ -11,6 +11,7 @@
   <ion-list >
 		<!-- ITENS DO ANO -->
 		<ion-item-sliding *ngFor="let consulta of consultas">
+
 			<button ion-item [color]="consulta.ativa ? 'secondary' : ''" (click)="abrir(consulta)">
 				<ion-row>
 					<ion-col><h2>{{consulta.veterinario.nome}}</h2></ion-col>
@@ -18,14 +19,23 @@
 				</ion-row>
 				<p>{{consulta.causa}}</p>
 			</button>
+
+			
 			<ion-item-options side="right">
+				<!-- EXCLUIR -->
 				<button ion-button color="danger" (click)="excluir(consulta)">
 					<ion-icon name="trash"></ion-icon>Excluir
 				</button>
-				<!-- <button ion-button color="secondary">
+				<!-- EXCLUIR [FIM] -->
+
+				<!-- EDITAR -->
+				<button ion-button color="primary" (click)="atualizar(consulta)">
 					<ion-icon name="create"></ion-icon>Editar
-				</button> -->
+				</button>
+				<!-- EDITAR [FIM] -->
 			</ion-item-options>
+			
+
 		</ion-item-sliding>
 
   </ion-list>

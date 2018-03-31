@@ -23,6 +23,16 @@ export class ConsultaProvider extends Servidor {
   }
 
   /**
+   * Cadastra uma nova consulta e retorna a lista atualizada
+   * @param animal 
+   */
+  public atualizar(consulta: Consulta): Promise<any> {
+    return this.getHeaders().then((headers:any) => {  
+      return this.http.put(this.link+"consultas", consulta, {headers: headers}).toPromise();
+    });
+  }
+
+  /**
    * Busca todos as consultas daquele usuário
    */
   public buscar(animalID: number): Promise<any> {

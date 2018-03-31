@@ -4,7 +4,6 @@ import { AlertController } from 'ionic-angular/components/alert/alert-controller
 import { AnimalPage } from '../animal/animal';
 import { ToastController } from 'ionic-angular/components/toast/toast-controller';
 import { AnimalProvider } from '../../providers/animal/animal';
-import { DataBrasilPipe } from '../../pipes/data-brasil/data-brasil';
 
 @IonicPage()
 @Component({
