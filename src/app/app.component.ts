@@ -20,20 +20,25 @@ export class MyApp {
   pages: Array<{title: string, component: any}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, public usuarioProvider: UsuarioProvider) {
-    this.initializeApp();
-
-     //Redirecionada para a página correta
-     this.usuarioProvider.getJWT().then((data) => {
-      //Já está logado
-      if (data != null)
-        this.rootPage = AnimaisPage;
-     });
-    
+     
     //Páginas do menu
     this.pages = [
       { title: 'Animais', component: AnimaisPage },
       { title: 'Veterinários', component: VeterinariosPage }
     ];
+
+    
+    //Redirecionada para a página correta
+    this.usuarioProvider.getJWT().then((data) => {
+      //Já está logado
+      if (data != null)
+        this.rootPage = AnimaisPage;
+      
+      //Remove as telas
+      this.initializeApp();
+    
+    });
+    
   }
   
   initializeApp() {
