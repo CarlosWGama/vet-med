@@ -20,11 +20,20 @@ export class ConsultaCadastrarPage {
   }
 
   ionViewWillLoad() {
-    this.consulta = new Consulta(this.navParams.get("animal"));
-    console.log(this.consulta);
+    if (this.navParams.get("consulta") != null) {
+      this.consulta = this.navParams.get("consulta");
+    }
+    else {
+      this.consulta = new Consulta(this.navParams.get("animal"));
+      console.log(this.consulta);
+    }
+
     this.vetProvider.buscar().then(veterinarios => this.veterinarios = veterinarios);
   }
 
+  ionViewDidEnter() {
+    this.consulta.veterinario = this.consulta.veterinario; 
+  }
 
   /** 
    * Cadastra novo Remédio na consulta atual 
@@ -51,6 +60,31 @@ export class ConsultaCadastrarPage {
   } 
 
   /** 
+   * Atualiza um reméedio da lista
+   * @param remedio Remedio
+   */
+  editar(r: Remedio, index: number): void {
+    this.alertCtrl.create({
+      title: "Adicionar Remédio",
+      inputs: [
+        { name: "remedio", placeholder: "Remédio", type: "text", value: r.remedio },
+        { name: "dosagem", placeholder: "Dosagem (quantidade)", type:"text", value: r.dosagem},
+        { name: "duracao", placeholder: "Duração (dias)", type: "number", value: r.duracao.toString()},
+        { name: "frequencia", placeholder: "Frequência (horas)", type: "number", value: r.frequencia.toString()},
+        { name: "inicio", placeholder: "Início", type: "date", value: r.inicio.toString()}
+      ],
+      buttons: [
+        {text: "Cancelar", role: "cancel"},
+        {text: "Salvar", handler: (data) => {
+          let remedio = new Remedio(data.remedio, data.dosagem, data.frequencia, data.duracao, data.inicio);
+          this.consulta.remedios[index] = remedio;
+          console.log(this.consulta.remedios);
+        }}
+      ]
+    }).present();
+  }
+
+  /** 
    * Remover Remédio da Lista 
    * @param remedio 
    */
@@ -64,7 +98,10 @@ export class ConsultaCadastrarPage {
    */
   salvar(): void {
     if (!this.validar()) {
-      this.consultaProvider.cadastrar(this.consulta);
+      if (this.consulta.id == null)
+        this.consultaProvider.cadastrar(this.consulta);
+      else
+        this.consultaProvider.atualizar(this.consulta);
       this.navCtrl.pop();
     }
   }

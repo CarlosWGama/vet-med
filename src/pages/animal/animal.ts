@@ -34,6 +34,10 @@ export class AnimalPage {
     this.consultaProvider.deletar(consulta.id).then(consultas => this.consultas = consultas); 
   }
 
+  atualizar(consulta: Consulta) {
+    this.navCtrl.push(ConsultaCadastrarPage, {consulta: consulta});
+  }
+
   nova(): void {
     this.navCtrl.push(ConsultaCadastrarPage, {animal: this.animal});
   }
